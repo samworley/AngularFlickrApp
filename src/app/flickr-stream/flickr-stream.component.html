@@ -1,3 +1,9 @@
-<div>
-
+<div class="photo-frame">
+    <div class="photo-item" *ngFor="let photo of photos;">
+        <img [src]="photo.img">
+        <h4 class="photo-title"><a href="{{photo.link}}">{{photo.title}}</a> by <a
+                href="http://www.flickr.com/photos/{{photo.authorId}}">{{photo.author}}</a></h4>
+        <p class="photo-description">{{photo.description}}</p>
+        <p class="photo-tags">Tags: {{photo.tags}}</p>
+    </div>
 </div>
