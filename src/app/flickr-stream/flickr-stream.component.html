@@ -1,9 +1,14 @@
-<div class="photo-frame">
-    <div class="photo-item" *ngFor="let photo of photos;">
-        <img [src]="photo.img">
-        <h4 class="photo-title"><a href="{{photo.link}}">{{photo.title}}</a> by <a
-                href="http://www.flickr.com/photos/{{photo.authorId}}">{{photo.author}}</a></h4>
-        <p class="photo-description">{{photo.description}}</p>
-        <p class="photo-tags">Tags: {{photo.tags}}</p>
+<div class="container">
+    <div class="input-group mb-3">
+        <input #tagSearch (keyup)="checkForSearchTerm(tagSearch.value)" type="text" class="form-control" placeholder="Tag search" aria-label="tag">
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12" *ngFor="let photo of photos;">
+            <a href="{{photo.link}}"><img [src]="photo.img" class="p-2"></a>
+            <h6 class="font-weight-bold"><a href="{{photo.link}}">{{photo.title}}</a></h6>
+            <h6>by <a href="http://www.flickr.com/photos/{{photo.authorId}}">{{photo.author}}</a></h6>
+            <!--<p class="photo-description">{{photo.description}}</p>-->
+            <small>Tags: {{photo.tags}}</small>
+        </div>
     </div>
 </div>

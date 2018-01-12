@@ -9,12 +9,28 @@ import {Photo} from '../models/photo.model';
 })
 export class FlickrStreamComponent implements OnInit {
     photos: Photo[];
+    private timeout = null;
+    private searchTerm = null;
 
     constructor(private apiService: FlickrApiService) {
-        this.photos = this.apiService.getPhotos();
+        this.updatePhotoStream();
     }
 
     ngOnInit() {
+    }
+
+    checkForSearchTerm(value) {
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            if (this.searchTerm !== value) {
+                this.updatePhotoStream('&tags=' + value);
+            }
+            this.searchTerm = value;
+        }, 500);
+    }
+
+    updatePhotoStream(params = '') {
+        this.photos = this.apiService.getPhotos(params);
     }
 
 }
