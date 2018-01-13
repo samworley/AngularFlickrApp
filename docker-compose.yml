@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    web:
+        build:
+           context: ./
+           dockerfile: dockerfile
+        volumes:
+           - ./:/var/www
+        ports:
+           - "80:80"
+        expose:
+           - 80
+           - 443

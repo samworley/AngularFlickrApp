@@ -1,6 +1,13 @@
 # AngularFlickrApp
+http://ec2-52-56-175-106.eu-west-2.compute.amazonaws.com/
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+## Technologies
+
+Angular 5 and Bootstrap 4 docker container, hosted on Amazon EC2.
+
+## Pre-requisites for running locally
+
+Docker version 17.06.2-ce and docker-compose version 1.18.0.
 
 ## Development server
 
