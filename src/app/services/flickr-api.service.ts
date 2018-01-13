@@ -20,15 +20,17 @@ export class FlickrApiService {
                 for (const obj in data.items) {
                     if (data.items.hasOwnProperty(obj)) {
                         // ensure title not too long
-                        const title = this.shortenString(data.items[obj].title, 50);
-                        // ensure author not too long
-                        const author = this.shortenString(data.items[obj].author, 40, true);
+                        const title = this.shortenString(data.items[obj].title, 60);
+                        // ensure author not too long and strip text
+                        const author = this.shortenString(data.items[obj].author, 40, 'author');
+                        // strip description of html tags
+                        const description = this.shortenString(data.items[obj].description, 40, 'description');
                         // ensure tags not too long
                         const tags = this.shortenString(data.items[obj].tags, 40);
                         // create new instance of photo from response
                         const photoModel = new Photo(
                             title,
-                            data.items[obj].description,
+                            description,
                             author,
                             data.items[obj].author_id,
                             data.items[obj].media.m,
@@ -50,17 +52,29 @@ export class FlickrApiService {
     }
 
     // trim string if too long
-    private shortenString(inputString: string, maxLength: number, author = false): string {
-        if (author) {
-            const match = inputString.match(/\("([^)]+)"\)/);
-            if (match[1] !== undefined) {
-                inputString = match[1];
-            }
-            // inputString = inputString.replace('nobody@flickr.com ', '');
-        }
+    private shortenString(inputString: string, maxLength: number, type: any = false): string {
         if (inputString.length === 0 || inputString === ' ') {
             return 'n/a';
+            // if author remove extra text
+        } else if (type && type === 'author') {
+            const match = inputString.match(/\("([^)]+)"\)/);
+            if (match && match[1] !== undefined) {
+                inputString = match[1];
+            }
+        } else if (type && type === 'description') {
+            inputString = this.parseHtmlString(inputString);
         }
         return inputString.length > maxLength ? inputString.substr(0, maxLength) + '...' : inputString;
+    }
+
+    // return final <p> tag of inputString
+    private parseHtmlString(inputString: string): any {
+        const el = document.createElement('html');
+        el.innerHTML = inputString;
+        const result = el.getElementsByTagName('p');
+        if (result) {
+            return result[result.length - 1].innerText;
+        }
+        return '';
     }
 }
