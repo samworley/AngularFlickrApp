@@ -8,6 +8,10 @@ https://github.com/samworley/AngularFlickrApp
 
 Angular 5 and Bootstrap 4 docker container, hosted on Amazon EC2.
 
+## General use
+
+Photos displayed from public API, along with title, author, description and tags (if included)
+
 ## Pre-requisites for initialising with docker
 
 Docker version 17.06.2-ce and docker-compose version 1.18.0.
