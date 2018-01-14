@@ -4,12 +4,15 @@
                placeholder="Tag search" aria-label="tag">
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4 col-sm-6 col-12 my-2" *ngFor="let photo of photos;">
+<div class="card-columns">
+    <div class="card" *ngFor="let photo of photos;">
         <a href="{{photo.link}}"><img [src]="photo.img" class="img-fluid rounded mx-auto d-block my-2"></a>
-        <h6 class="text-left font-weight-bold  is-breakable mt-1"><a href="{{photo.link}}">{{photo.title}}</a></h6>
-        <h6 class="text-left is-breakable">by <a href="http://www.flickr.com/photos/{{photo.authorId}}">{{photo.author}}</a></h6>
-        <h6 class="text-left is-breakable">{{photo.description}}</h6>
-        <small>Tags: {{photo.tags}}</small>
+        <div class="card-body">
+            <h6 class="text-left font-weight-bold  is-breakable mt-1"><a href="{{photo.link}}">{{photo.title}}</a></h6>
+            <h6 class="text-left is-breakable">by <a href="http://www.flickr.com/photos/{{photo.authorId}}">{{photo.author}}</a>
+            </h6>
+            <h6 class="text-left is-breakable">{{photo.description}}</h6>
+            <small>Tags: {{photo.tags}}</small>
+        </div>
     </div>
 </div>
