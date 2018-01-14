@@ -10,7 +10,8 @@ Angular 5 and Bootstrap 4 docker container, hosted on Amazon EC2.
 
 ## General use
 
-Photos displayed from public API, along with title, author, description and tags (if included)
+Photos displayed from public Flickr API, along with title, author, description and tags (if included).
+Search photo tags using input field - search will trigger on pause of typing.
 
 ## Pre-requisites for initialising with docker
 
