@@ -19,6 +19,7 @@ export class FlickrStreamComponent implements OnInit {
     ngOnInit() {
     }
 
+    // trigger photo update after keypress timeout
     checkForSearchTerm(value) {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
@@ -29,6 +30,7 @@ export class FlickrStreamComponent implements OnInit {
         }, 500);
     }
 
+    // call api to update photos
     updatePhotoStream(params = '') {
         this.photos = this.apiService.getPhotos(params);
     }
